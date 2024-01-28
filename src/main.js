@@ -4,7 +4,7 @@
 
 class HashMap {
   constructor() {
-    this.hashArray = Array.from({ length: 5 }, function (value, _) {
+    this.hash_array = Array.from({ length: 5 }, function (value, _) {
       return (value = undefined);
     });
   }
@@ -33,5 +33,5 @@ class HashMap {
   entries() {}
 }
 
-const sampleHashMap = new HashMap();
-sampleHashMap.hash("mouse");
+const sample_hash_map = new HashMap();
+sample_hash_map.hash("mouse");
