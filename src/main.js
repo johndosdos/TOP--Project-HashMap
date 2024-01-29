@@ -11,9 +11,26 @@ class HashMap {
 
   /**
    * @param {string} key
+   * @returns {number}
    */
-  hash(key) {}
+  #hash(key) {
+    let hash_code = 0;
 
+    if (typeof key !== "string") {
+      throw new Error("key is not type string");
+    }
+
+    for (const CHAR of key) {
+      hash_code += String(CHAR).charCodeAt(0) * 31;
+    }
+
+    return hash_code;
+  }
+
+  /**
+   * @param {string} key
+   * @param {string} value
+   */
   set(key, value) {}
 
   get(key) {}
@@ -34,4 +51,4 @@ class HashMap {
 }
 
 const sample_hash_map = new HashMap();
-sample_hash_map.hash("mouse");
+sample_hash_map.set("car", "toyota");
