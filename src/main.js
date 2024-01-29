@@ -4,7 +4,7 @@
 
 class HashMap {
   constructor() {
-    this.hash_array = Array.from({ length: 5 }, function (value, _) {
+    this.hash_array = Array.from({ length: 10 }, function (value, _) {
       return (value = 0);
     });
   }
