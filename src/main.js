@@ -24,7 +24,7 @@ class HashMap {
     }
 
     for (const CHAR of key) {
-      hash_code += String(CHAR).charCodeAt(0) * 11;
+      hash_code += String(CHAR).charCodeAt(0) * 15;
     }
 
     return hash_code;
