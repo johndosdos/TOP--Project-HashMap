@@ -4,8 +4,11 @@
 
 class HashMap {
   constructor() {
+    /**
+     * @type {Array<{hash_code: number, value: string}>}
+     */
     this.hash_array = Array.from({ length: 10 }, function (value, _) {
-      return (value = 0);
+      return (value = { hash_code: 0, value: "" });
     });
   }
 
