@@ -61,8 +61,6 @@ class HashMap {
     const hash_code_index2 = 7 - (hash_code % 7);
 
     this.#double_hash(hash_code, hash_code_index1, hash_code_index2, value);
-
-    console.log({ key, value });
   }
 
   get(key) {}
