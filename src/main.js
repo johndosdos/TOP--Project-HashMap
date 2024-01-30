@@ -34,7 +34,15 @@ class HashMap {
    * @param {string} key
    * @param {string} value
    */
-  set(key, value) {}
+  set(key, value) {
+    const hash_code = this.#hash(key);
+    const hash_code_index1 = hash_code % this.hash_array.length;
+    const hash_code_index2 = 7 - (hash_code % 7);
+
+    this.#double_hash(hash_code, hash_code_index1, hash_code_index2, value);
+
+    console.log({ key, value });
+  }
 
   get(key) {}
 
