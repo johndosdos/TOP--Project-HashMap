@@ -31,6 +31,27 @@ class HashMap {
   }
 
   /**
+   * @param {number} hash_code
+   * @param {number} index1
+   * @param {number} index2
+   * @param {string} value
+   */
+  #double_hash(hash_code, index1, index2, value) {
+    let i = 0;
+    let final_index = index1;
+
+    while (this.hash_array[final_index].hash_code !== 0) {
+      final_index = (index1 + i * index2) % this.hash_array.length;
+      i++;
+    }
+
+    this.hash_array[final_index] = {
+      hash_code,
+      value,
+    };
+  }
+
+  /**
    * @param {string} key
    * @param {string} value
    */
