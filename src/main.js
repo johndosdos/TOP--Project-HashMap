@@ -7,7 +7,7 @@ class HashMap {
     /**
      * @type {Array<{hash_code: number, value: string}>}
      */
-    this.hash_array = Array.from({ length: 16 }, function (value, _) {
+    this.hash_array = Array.from({ length: 13 }, function (value, _) {
       return (value = { hash_code: 0, value: "" });
     });
   }
