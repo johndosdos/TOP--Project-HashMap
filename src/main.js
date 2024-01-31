@@ -29,8 +29,8 @@ class HashMap {
    * @returns {number}
    */
   #hash(key) {
-    let hash_code = 0;
     const PREV_PRIME = this.#calc_prev_prime();
+    let hash_code = 0;
 
     if (typeof key !== "string") {
       throw new Error("key is not type string");
