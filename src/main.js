@@ -10,6 +10,18 @@ class HashMap {
     this.hash_array = Array.from({ length: 13 }, function (value, _) {
       return (value = { key: "", value: "" });
     });
+  #calc_prev_prime() {
+    let prime = 0;
+    let i = this.hash_array.length;
+
+    while (i--) {
+      if (i % 2 !== 0) {
+        prime = i;
+        break;
+      }
+    }
+
+    return prime;
   }
 
   /**
@@ -18,13 +30,14 @@ class HashMap {
    */
   #hash(key) {
     let hash_code = 0;
+    const PREV_PRIME = this.#calc_prev_prime();
 
     if (typeof key !== "string") {
       throw new Error("key is not type string");
     }
 
     for (const CHAR of key) {
-      hash_code += String(CHAR).charCodeAt(0) * 11;
+      hash_code += String(CHAR).charCodeAt(0) * PREV_PRIME;
     }
 
     return hash_code;
@@ -34,7 +47,8 @@ class HashMap {
    * @param {string} key
    * @param {string} value
    * @param {number} index1
-   * @param {number} index2   */
+   * @param {number} index2
+   */
   #double_hash(key, value, index1, index2) {
     let i = 0;
     let final_index = index1;
@@ -55,9 +69,10 @@ class HashMap {
    * @param {string} value
    */
   set(key, value) {
+    const PREV_PRIME = this.#calc_prev_prime();
     const HASH_CODE = this.#hash(key);
     const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
-    const HASH_CODE_INDEX2 = 7 - (HASH_CODE % 7);
+    const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
 
     this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
   }
