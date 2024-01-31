@@ -1,14 +1,14 @@
 // @ts-check
 
-//On this assignment, only the string data type are handled.
+//On this assignment, only the string data type is handled.
 
 class HashMap {
   constructor() {
     /**
-     * @type {Array<{hash_code: number, value: string}>}
+     * @type {Array<{key: string, value: string}>}
      */
     this.hash_array = Array.from({ length: 13 }, function (value, _) {
-      return (value = { hash_code: 0, value: "" });
+      return (value = { key: "", value: "" });
     });
   }
 
@@ -31,22 +31,21 @@ class HashMap {
   }
 
   /**
-   * @param {number} hash_code
-   * @param {number} index1
-   * @param {number} index2
+   * @param {string} key
    * @param {string} value
-   */
-  #double_hash(hash_code, index1, index2, value) {
+   * @param {number} index1
+   * @param {number} index2   */
+  #double_hash(key, value, index1, index2) {
     let i = 0;
     let final_index = index1;
 
-    while (this.hash_array[final_index].hash_code !== 0) {
+    while (this.hash_array[final_index].key !== "") {
       final_index = (index1 + i * index2) % this.hash_array.length;
       i++;
     }
 
     this.hash_array[final_index] = {
-      hash_code,
+      key,
       value,
     };
   }
@@ -60,7 +59,7 @@ class HashMap {
     const hash_code_index1 = hash_code % this.hash_array.length;
     const hash_code_index2 = 7 - (hash_code % 7);
 
-    this.#double_hash(hash_code, hash_code_index1, hash_code_index2, value);
+    this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
   }
 
   get(key) {}
