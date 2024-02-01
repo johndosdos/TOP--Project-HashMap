@@ -59,8 +59,10 @@ class HashMap {
       throw new Error("key is not type string");
     }
 
-    for (const CHAR of key) {
-      hash_code += String(CHAR).charCodeAt(0) * PREV_PRIME;
+    for (let i = 0; i < key.length; i++) {
+      // Horner's method
+      hash_code +=
+        PREV_PRIME * (String(key).charCodeAt(i) + PREV_PRIME * hash_code);
     }
 
     return hash_code;
