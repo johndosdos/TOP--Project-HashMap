@@ -102,6 +102,14 @@ class HashMap {
     return NUM_OF_ELEMENTS / ARRAY_SIZE;
   }
 
+  /**
+   * @param {number} load_factor
+   */
+  #check_load_factor(load_factor) {
+    if (load_factor >= 0.75) {
+      this.#rehash();
+    }
+  }
 
   /**
    * @param {string} key
