@@ -3,6 +3,10 @@
 //On this assignment, only the string data type is handled.
 
 class HashMap {
+  #prime;
+  hash_array;
+  load_factor;
+
   constructor() {
     /**
      * @type {Array<{key: string, value: string}>}
