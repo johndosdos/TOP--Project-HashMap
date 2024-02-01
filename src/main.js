@@ -14,6 +14,7 @@ class HashMap {
     this.hash_array = Array.from({ length: 13 }, function (value, _) {
       return (value = { key: "", value: "" });
     });
+    this.load_factor = 0;
 
     this.#prime = function () {
       let prime = 0;
