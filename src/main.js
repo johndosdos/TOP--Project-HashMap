@@ -14,11 +14,22 @@ class HashMap {
     this.hash_array = Array.from({ length: 13 }, function (value, _) {
       return (value = { key: "", value: "" });
     });
-  #calc_prev_prime() {
-    let prime = 0;
-    let i = this.hash_array.length;
 
-    while (i--) {
+    this.#prime = function () {
+      let prime = 0;
+      let i = this.hash_array.length;
+
+      while (i--) {
+        if (i % 2 !== 0) {
+          prime = i;
+          break;
+        }
+      }
+
+      return prime;
+    };
+  }
+
       if (i % 2 !== 0) {
         prime = i;
         break;
