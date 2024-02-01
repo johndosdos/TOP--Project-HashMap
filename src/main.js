@@ -52,7 +52,7 @@ class HashMap {
    * @returns {number}
    */
   #hash(key) {
-    const PREV_PRIME = this.#calc_prev_prime();
+    const PREV_PRIME = this.#prime();
     let hash_code = 0;
 
     if (typeof key !== "string") {
@@ -86,13 +86,14 @@ class HashMap {
       value,
     };
   }
+      const PREV_PRIME = this.#prime();
 
   /**
    * @param {string} key
    * @param {string} value
    */
   set(key, value) {
-    const PREV_PRIME = this.#calc_prev_prime();
+    const PREV_PRIME = this.#prime();
     const HASH_CODE = this.#hash(key);
     const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
     const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
