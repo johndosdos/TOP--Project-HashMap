@@ -8,9 +8,6 @@ class HashMap {
   load_factor;
 
   constructor() {
-    /**
-     * @type {Array<{key: string, value: string}>}
-     */
     this.hash_array = Array.from({ length: 13 }, function (value, _) {
       return (value = { key: "", value: "" });
     });
@@ -188,3 +185,4 @@ sample_hash_map.set("pineapple", "yellow");
 sample_hash_map.set("peach", "orange");
 
 console.log(sample_hash_map.hash_array);
+console.log("load factor", sample_hash_map.load_factor);
