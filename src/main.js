@@ -90,6 +90,18 @@ class HashMap {
     };
   }
       const PREV_PRIME = this.#prime();
+  /**
+   * @param {Array<{key: string, value: string}>} hash_array
+   */
+  #calc_load_factor(hash_array) {
+    const NUM_OF_ELEMENTS = hash_array.filter(function (element) {
+      if (element.key) return element;
+    }).length;
+    const ARRAY_SIZE = hash_array.length;
+
+    return NUM_OF_ELEMENTS / ARRAY_SIZE;
+  }
+
 
   /**
    * @param {string} key
