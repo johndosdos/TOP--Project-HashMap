@@ -89,7 +89,38 @@ class HashMap {
       value,
     };
   }
+
+  #rehash() {
+    const OLD_HASH_ARRAY = [...this.hash_array];
+    const NEW_HASH_ARRAY = Array.from(
+      { length: this.#calc_next_prime(this.hash_array.length * 2) },
+      function (value, _) {
+        return (value = { key: "", value: "" });
+      }
+    );
+
+    this.hash_array = NEW_HASH_ARRAY;
+    this.load_factor = 0;
+
+    for (const ELEMENT of OLD_HASH_ARRAY) {
+      if (!ELEMENT.key) continue;
+
       const PREV_PRIME = this.#prime();
+      const HASH_CODE = this.#hash(ELEMENT.key);
+      const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
+      const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
+
+      this.#double_hash(
+        ELEMENT.key,
+        ELEMENT.value,
+        HASH_CODE_INDEX1,
+        HASH_CODE_INDEX2
+      );
+
+      this.load_factor = this.#calc_load_factor(this.hash_array);
+    }
+  }
+
   /**
    * @param {Array<{key: string, value: string}>} hash_array
    */
