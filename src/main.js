@@ -30,6 +30,14 @@ class HashMap {
     };
   }
 
+  /**
+   * @param {number} hash_array_length
+   */
+  #calc_next_prime(hash_array_length) {
+    let prime = 0;
+    let i = hash_array_length;
+
+    while (i++) {
       if (i % 2 !== 0) {
         prime = i;
         break;
