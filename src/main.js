@@ -122,6 +122,9 @@ class HashMap {
     const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
 
     this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
+
+    this.load_factor = this.#calc_load_factor(this.hash_array);
+    this.#check_load_factor(this.load_factor);
   }
 
   get(key) {}
