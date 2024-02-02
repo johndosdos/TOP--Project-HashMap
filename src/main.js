@@ -165,7 +165,18 @@ class HashMap {
     this.#check_load_factor(this.load_factor);
   }
 
-  get(key) {}
+  /**
+   * @param {string} key
+   * @param {string} operation
+   * @returns {string | null}
+   */
+  get(key, operation = "get") {
+    const FINAL_INDEX = this.#calc_hash_and_final_index(key, operation);
+
+    if (!this.hash_array[FINAL_INDEX].key) return null;
+
+    return this.hash_array[FINAL_INDEX].value;
+  }
 
   has(key) {}
 
