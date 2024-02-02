@@ -71,6 +71,7 @@ class HashMap {
    * @param {string} value
    * @param {number} index1
    * @param {number} index2
+   * @returns {number}
    */
   #double_hash(key, value, index1, index2) {
     let i = 0;
@@ -85,6 +86,8 @@ class HashMap {
       key,
       value,
     };
+
+    return final_index;
   }
 
   #rehash() {
