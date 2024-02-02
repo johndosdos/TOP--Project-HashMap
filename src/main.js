@@ -71,39 +71,35 @@ class HashMap {
    * @param {string} value
    * @param {number} index1
    * @param {number} index2
+   * @param {string} operation
    * @returns {number}
    */
-  #double_hash(key, value, index1, index2) {
+  #double_hash(index1, index2, operation) {
     let i = 0;
     let final_index = index1;
 
-    while (this.hash_array[final_index].key !== "") {
+    while (this.hash_array[final_index].key !== "" && operation === "set") {
       final_index = (index1 + i * index2) % this.hash_array.length;
       i++;
     }
-
-    this.hash_array[final_index] = {
-      key,
-      value,
-    };
 
     return final_index;
   }
 
   /**
    * @param {string} key
-   * @param {string} value
+   * @param {string} operation
    */
-  #calc_hash_and_final_index(key, value) {
+  #calc_hash_and_final_index(key, operation) {
     const PREV_PRIME = this.#prime();
     const HASH_CODE = this.#hash(key);
     const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
     const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
 
-    return this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
+    return this.#double_hash(HASH_CODE_INDEX1, HASH_CODE_INDEX2, operation);
   }
 
-  #rehash() {
+  #rehash(operation = "set") {
     const OLD_HASH_ARRAY = [...this.hash_array];
     const NEW_HASH_ARRAY = Array.from(
       { length: this.#calc_next_prime(this.hash_array.length * 2) },
@@ -121,7 +117,7 @@ class HashMap {
 
       if (!key) continue;
 
-      const FINAL_INDEX = this.#calc_hash_and_final_index(key, value);
+      const FINAL_INDEX = this.#calc_hash_and_final_index(key, operation);
 
       this.hash_array[FINAL_INDEX] = {
         key,
@@ -157,8 +153,8 @@ class HashMap {
    * @param {string} key
    * @param {string} value
    */
-  set(key, value) {
-    const FINAL_INDEX = this.#calc_hash_and_final_index(key, value);
+  set(key, value, operation = "set") {
+    const FINAL_INDEX = this.#calc_hash_and_final_index(key, operation);
 
     this.hash_array[FINAL_INDEX] = {
       key,
