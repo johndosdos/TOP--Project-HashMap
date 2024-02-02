@@ -90,6 +90,19 @@ class HashMap {
     return final_index;
   }
 
+  /**
+   * @param {string} key
+   * @param {string} value
+   */
+  #calc_hash_and_final_index(key, value) {
+    const PREV_PRIME = this.#prime();
+    const HASH_CODE = this.#hash(key);
+    const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
+    const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
+
+    return this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
+  }
+
   #rehash() {
     const OLD_HASH_ARRAY = [...this.hash_array];
     const NEW_HASH_ARRAY = Array.from(
