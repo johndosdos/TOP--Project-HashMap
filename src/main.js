@@ -176,7 +176,18 @@ class HashMap {
     return this.hash_array[FINAL_INDEX].value;
   }
 
-  has(key) {}
+  /**
+   * @param {string} key
+   * @param {string} operation
+   * @returns {boolean}
+   */
+  has(key, operation = "get") {
+    const FINAL_INDEX = this.#calc_hash_and_final_index(key, operation);
+
+    if (this.hash_array[FINAL_INDEX].key !== key) return false;
+
+    return true;
+  }
 
   remove(key) {}
 
@@ -205,5 +216,4 @@ sample_hash_map.set("banana", "yellow");
 
 console.log(sample_hash_map.hash_array);
 console.log("load factor", sample_hash_map.load_factor);
-console.log(sample_hash_map.get("apple"));
 console.log(sample_hash_map.get("banana"));
