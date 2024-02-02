@@ -67,8 +67,6 @@ class HashMap {
   }
 
   /**
-   * @param {string} key
-   * @param {string} value
    * @param {number} index1
    * @param {number} index2
    * @param {string} operation
@@ -196,14 +194,16 @@ class HashMap {
 const sample_hash_map = new HashMap();
 sample_hash_map.set("apple", "red");
 sample_hash_map.set("banana", "yellow");
-sample_hash_map.set("orange", "orange");
-sample_hash_map.set("grape", "purple");
-sample_hash_map.set("watermelon", "green");
-sample_hash_map.set("strawberry", "red");
-sample_hash_map.set("blueberry", "blue");
-sample_hash_map.set("kiwi", "green");
-sample_hash_map.set("pineapple", "yellow");
-sample_hash_map.set("peach", "orange");
+// sample_hash_map.set("orange", "orange");
+// sample_hash_map.set("grape", "purple");
+// sample_hash_map.set("watermelon", "green");
+// sample_hash_map.set("strawberry", "red");
+// sample_hash_map.set("blueberry", "blue");
+// sample_hash_map.set("kiwi", "green");
+// sample_hash_map.set("pineapple", "yellow");
+// sample_hash_map.set("peach", "orange");
 
 console.log(sample_hash_map.hash_array);
 console.log("load factor", sample_hash_map.load_factor);
+console.log(sample_hash_map.get("apple"));
+console.log(sample_hash_map.get("banana"));
