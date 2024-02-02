@@ -100,19 +100,17 @@ class HashMap {
     this.load_factor = 0;
 
     for (const ELEMENT of OLD_HASH_ARRAY) {
-      if (!ELEMENT.key) continue;
+      const key = ELEMENT.key;
+      const value = ELEMENT.value;
+
+      if (!key) continue;
 
       const PREV_PRIME = this.#prime();
       const HASH_CODE = this.#hash(ELEMENT.key);
       const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
       const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
 
-      this.#double_hash(
-        ELEMENT.key,
-        ELEMENT.value,
-        HASH_CODE_INDEX1,
-        HASH_CODE_INDEX2
-      );
+      this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
 
       this.load_factor = this.#calc_load_factor(this.hash_array);
     }
