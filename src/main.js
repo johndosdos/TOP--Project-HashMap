@@ -108,12 +108,12 @@ class HashMap {
 
       if (!key) continue;
 
-      const PREV_PRIME = this.#prime();
-      const HASH_CODE = this.#hash(ELEMENT.key);
-      const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
-      const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
+      const FINAL_INDEX = this.#calc_hash_and_final_index(key, value);
 
-      this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
+      this.hash_array[FINAL_INDEX] = {
+        key,
+        value,
+      };
 
       this.load_factor = this.#calc_load_factor(this.hash_array);
     }
@@ -145,12 +145,12 @@ class HashMap {
    * @param {string} value
    */
   set(key, value) {
-    const PREV_PRIME = this.#prime();
-    const HASH_CODE = this.#hash(key);
-    const HASH_CODE_INDEX1 = HASH_CODE % this.hash_array.length;
-    const HASH_CODE_INDEX2 = PREV_PRIME - (HASH_CODE % PREV_PRIME);
+    const FINAL_INDEX = this.#calc_hash_and_final_index(key, value);
 
-    this.#double_hash(key, value, HASH_CODE_INDEX1, HASH_CODE_INDEX2);
+    this.hash_array[FINAL_INDEX] = {
+      key,
+      value,
+    };
 
     this.load_factor = this.#calc_load_factor(this.hash_array);
     this.#check_load_factor(this.load_factor);
