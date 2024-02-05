@@ -200,6 +200,9 @@ class HashMap {
     if (!this.hash_array[FINAL_INDEX].key) return false;
 
     this.hash_array[FINAL_INDEX] = { key: "", value: "" };
+    this.load_factor = this.#calc_load_factor(this.hash_array);
+    this.#check_load_factor(this.load_factor);
+
     return true;
   }
 
@@ -207,15 +210,11 @@ class HashMap {
    * @returns {number}
    */
   length() {
-    let counter = 0;
+    const NUM_OF_ELEMENTS = this.hash_array.filter(function (element) {
+      if (element.key) return element;
+    }).length;
 
-    for (const ELEMENT of this.hash_array) {
-      if (!ELEMENT.key) continue;
-
-      counter++;
-    }
-
-    return counter;
+    return NUM_OF_ELEMENTS;
   }
 
   clear() {}
