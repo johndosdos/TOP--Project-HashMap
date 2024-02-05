@@ -87,6 +87,7 @@ class HashMap {
   /**
    * @param {string} key
    * @param {string} operation
+   * @returns {number}
    */
   #calc_hash_and_final_index(key, operation) {
     const PREV_PRIME = this.#prime();
