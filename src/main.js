@@ -98,7 +98,7 @@ class HashMap {
     return this.#double_hash(HASH_CODE_INDEX1, HASH_CODE_INDEX2, operation);
   }
 
-  #rehash(operation = "set") {
+  #rehash() {
     const OLD_HASH_ARRAY = [...this.hash_array];
     const NEW_HASH_ARRAY = Array.from(
       { length: this.#calc_next_prime(this.hash_array.length * 2) },
@@ -116,7 +116,7 @@ class HashMap {
 
       if (!key) continue;
 
-      const FINAL_INDEX = this.#calc_hash_and_final_index(key, operation);
+      const FINAL_INDEX = this.#calc_hash_and_final_index(key, "set");
 
       this.hash_array[FINAL_INDEX] = {
         key,
