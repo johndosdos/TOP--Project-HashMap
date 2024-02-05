@@ -190,7 +190,18 @@ class HashMap {
     return true;
   }
 
-  remove(key) {}
+  /**
+   * @param {string} key
+   * @returns {boolean}
+   */
+  remove(key) {
+    const FINAL_INDEX = this.#calc_hash_and_final_index(key, "get");
+
+    if (!this.hash_array[FINAL_INDEX].key) return false;
+
+    this.hash_array[FINAL_INDEX] = { key: "", value: "" };
+    return true;
+  }
 
   length() {}
 
@@ -218,3 +229,5 @@ sample_hash_map.set("banana", "yellow");
 console.log(sample_hash_map.hash_array);
 console.log("load factor", sample_hash_map.load_factor);
 console.log(sample_hash_map.get("banana"));
+console.log(sample_hash_map.remove("banana"));
+console.log(sample_hash_map.hash_array);
