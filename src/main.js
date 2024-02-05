@@ -98,10 +98,21 @@ class HashMap {
     return this.#double_hash(HASH_CODE_INDEX1, HASH_CODE_INDEX2, operation);
   }
 
-  #rehash() {
+  /**
+   * @param {string} operation
+   */
+  #rehash(operation) {
     const OLD_HASH_ARRAY = [...this.hash_array];
+    let new_size = 0;
+
+    if (operation === "up") {
+      new_size = this.hash_array.length * 2;
+    } else if (operation === "down") {
+      new_size = Math.floor(this.hash_array.length / 2);
+    }
+
     const NEW_HASH_ARRAY = Array.from(
-      { length: this.#calc_next_prime(this.hash_array.length * 2) },
+      { length: this.#calc_next_prime(new_size) },
       function (value, _) {
         return (value = { key: "", value: "" });
       }
@@ -144,7 +155,9 @@ class HashMap {
    */
   #check_load_factor(load_factor) {
     if (load_factor >= 0.75) {
-      this.#rehash();
+      this.#rehash("up");
+    } else if (load_factor <= 0.25 && this.hash_array.length > 13) {
+      this.#rehash("down");
     }
   }
 
@@ -241,9 +254,20 @@ sample_hash_map.set("peach", "orange");
 console.log(sample_hash_map.hash_array);
 
 console.log("load factor", sample_hash_map.load_factor);
-console.log(sample_hash_map.get("banana"));
+// console.log(sample_hash_map.get("banana"));
 
-console.log(sample_hash_map.remove("banana"));
+sample_hash_map.remove("blueberry");
+console.log("load factor", sample_hash_map.load_factor);
+
+sample_hash_map.remove("kiwi");
+console.log("load factor", sample_hash_map.load_factor);
+
+sample_hash_map.remove("pineapple");
+console.log("load factor", sample_hash_map.load_factor);
+
+sample_hash_map.remove("peach");
+console.log("load factor", sample_hash_map.load_factor);
+
 console.log(sample_hash_map.hash_array);
 
 console.log(sample_hash_map.length());
