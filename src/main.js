@@ -290,3 +290,7 @@ console.log("load factor", sample_hash_map.load_factor);
 console.log(sample_hash_map.hash_array);
 
 console.log(sample_hash_map.length());
+
+console.log(sample_hash_map.keys());
+console.log(sample_hash_map.values());
+console.log(sample_hash_map.entries());
