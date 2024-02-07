@@ -35,11 +35,12 @@ class HashMap {
     let prime = 0;
     let i = hash_array_length;
 
-    while (i++) {
+    while (i) {
       if (i % 2 !== 0) {
         prime = i;
         break;
       }
+      i++;
     }
 
     return prime;
