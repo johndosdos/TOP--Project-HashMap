@@ -40,6 +40,7 @@ class HashMap {
         prime = i;
         break;
       }
+
       i++;
     }
 
@@ -231,7 +232,12 @@ class HashMap {
     return NUM_OF_ELEMENTS;
   }
 
-  clear() {}
+  clear() {
+    this.hash_array = Array.from({ length: 13 }, function (value, _) {
+      return (value = { key: "", value: "" });
+    });
+    this.load_factor = 0;
+  }
 
   keys() {}
 
@@ -252,10 +258,10 @@ sample_hash_map.set("kiwi", "green");
 sample_hash_map.set("pineapple", "yellow");
 sample_hash_map.set("peach", "orange");
 
-console.log(sample_hash_map.hash_array);
+// console.log(sample_hash_map.hash_array);
 
 console.log("load factor", sample_hash_map.load_factor);
-// console.log(sample_hash_map.get("banana"));
+console.log(sample_hash_map.get("banana"));
 
 sample_hash_map.remove("blueberry");
 console.log("load factor", sample_hash_map.load_factor);
