@@ -239,7 +239,11 @@ class HashMap {
     this.load_factor = 0;
   }
 
-  keys() {}
+  keys() {
+    return this.hash_array
+      .map((element) => element.key)
+      .filter((element) => element);
+  }
 
   values() {}
 
