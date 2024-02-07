@@ -251,7 +251,11 @@ class HashMap {
       .filter((element) => element);
   }
 
-  entries() {}
+  entries() {
+    return this.hash_array
+      .map((element) => [element.key, element.value])
+      .filter((element) => element[0]);
+  }
 }
 
 const sample_hash_map = new HashMap();
