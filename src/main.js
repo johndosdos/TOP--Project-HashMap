@@ -245,7 +245,11 @@ class HashMap {
       .filter((element) => element);
   }
 
-  values() {}
+  values() {
+    return this.hash_array
+      .map((element) => element.value)
+      .filter((element) => element);
+  }
 
   entries() {}
 }
